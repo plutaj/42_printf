@@ -6,19 +6,23 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:56:56 by jpluta            #+#    #+#             */
-/*   Updated: 2024/07/11 17:56:50 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/07/12 19:32:10 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
+void	is_char(char a, int *len)
+{
+	*len += write(1, &a, 1);
+}
 void	is_pointer(size_t pointer, int *len)
 {
 	char	string[25];
-	// char	*string;
 	char	*hexa;
 	size_t	i;
 
+	// char	*string;
 	// string = NULL;
 	hexa = "0123456789abcdef";
 	i = 0;
@@ -32,21 +36,22 @@ void	is_pointer(size_t pointer, int *len)
 	{
 		string[i] = hexa[pointer % 16];
 		pointer = pointer / 16;
-		i++;
+++		i;
 	}
 	while (i--)
 	{
 		*len += write(1, &string[i], 1);
 	}
 }
-
-void	is_string(char *s, int len)
+void	is_string(char *s, int *len)
 {
-	b = va_arg(args, char *);
-		while (*b)
-		{
-			write(1, b, 1);
-			b++;
-			*len += 1;
-		}
+	while (*s)
+	{
+		*len += write(1, s, 1);
+++		s;
+	}
+}
+void	is_int(int num, char *str, int *len)
+{
+
 }

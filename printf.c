@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:03:29 by jpluta            #+#    #+#             */
-/*   Updated: 2024/07/11 17:56:45 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/07/12 19:28:15 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,21 @@
 
 void	form_spec_check(const char *string, va_list args, int *len)
 {
-	char	a;
-	char	*b;
 	int		i;
+	char	*str;
 
 	i = 0;
+	str = NULL;
 	if (*string == '%')
-	{
-		*len += 1;
-		write(1, "%", 1);
-	}
+		len += write(1, "%", 1);
 	else if (*string == 'c')
-	{
-		a = va_arg(args, int);
-		*len += 1;
-		write(1, &a, 1);
-	}
+		is_char(va_arg(args, int), len);
 	else if (*string == 's')
-	{
 		is_string(va_arg(args, char *), len);
-		// b = va_arg(args, char *);
-		// while (*b)
-		// {
-		// 	write(1, b, 1);
-		// 	b++;
-		// 	*len += 1;
-		// }
-	}
 	else if (*string == 'p')
 		is_pointer(va_arg(args, size_t), len);
 	else if (*string == 'i' || *string == 'd')
-	{
-	}
+		is_int(va_arg(args, int), str, len);
 	// else if (*string == 'u')
 	// {
 	// }
@@ -85,11 +68,12 @@ int	ft_printf(const char *string, ...) // ahoj %%
 int	main(void)
 {
 	char	*a;
+	int		age;
+
 	a = "jozef";
-	// int i = ft_printf("ahoj %s, tvoja znamka je %c", a, b);
-	// printf("\n%d", i);
-	int i = ft_printf("my address: %s\n", a);
-	printf("original address: %p\n", a);
-	printf("%d\n", i);
+	age = 26;
+	int i = ft_printf("ahoj %s, mas %d rokov\n", a, age);
+	printf("%d", i);
+
 	return (0);
 }

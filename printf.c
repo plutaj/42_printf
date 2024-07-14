@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:03:29 by jpluta            #+#    #+#             */
-/*   Updated: 2024/07/12 19:28:15 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/07/14 17:58:47 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 void	form_spec_check(const char *string, va_list args, int *len)
 {
-	int		i;
-	char	*str;
+	// int		i;
+	char	str[15];
 
-	i = 0;
-	str = NULL;
+	// i = 0;
 	if (*string == '%')
 		len += write(1, "%", 1);
 	else if (*string == 'c')
@@ -29,15 +28,15 @@ void	form_spec_check(const char *string, va_list args, int *len)
 		is_pointer(va_arg(args, size_t), len);
 	else if (*string == 'i' || *string == 'd')
 		is_int(va_arg(args, int), str, len);
-	// else if (*string == 'u')
-	// {
-	// }
-	// else if (*string == 'x' || *string == 'X')
-	// {
-	// }
+	else if (*string == 'u')
+		is_uint(va_arg(args, unsigned int), str, len);
+	else if (*string == 'x')
+		is_shexa(va_arg(args, unsigned int), len);
+	else if (*string == 'X')
+		is_bhexa(va_arg(args, unsigned int), len);
 }
 
-int	ft_printf(const char *string, ...) // ahoj %%
+int	ft_printf(const char *string, ...)
 {
 	int length;
 	size_t i;
@@ -65,15 +64,24 @@ int	ft_printf(const char *string, ...) // ahoj %%
 	return (length);
 }
 
-int	main(void)
-{
-	char	*a;
-	int		age;
+// int	main(void)
+// {
+// 	// char	*a;
+// 	unsigned int	age = 9999;
 
-	a = "jozef";
-	age = 26;
-	int i = ft_printf("ahoj %s, mas %d rokov\n", a, age);
-	printf("%d", i);
+// 	// a = "jozef";
+// 	// age = 4294967291;
+// 	int i = ft_printf("hex num of 9999 is %x\n", age);
+// 	i = ft_printf("hex num of 9999 is %X\n", age);
+// 	printf("%d\n", i);
+// 	// i = ft_printf("tvoj vek je %d\n", 0);
+// 	// printf("%d\n", i);
+// 	// i = ft_printf("tvoj vek je %d\n", -2147483648);
+// 	// printf("%d\n", i);
+// 	// i = ft_printf("tvoj vek je %d\n", 1298439850);
+// 	// printf("orig pointer je %p\n", a);
+// 	// printf("%d", i);
+	
 
-	return (0);
-}
+// 	return (0);
+// }

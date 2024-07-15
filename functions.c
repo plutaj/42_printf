@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   functions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:56:56 by jpluta            #+#    #+#             */
-/*   Updated: 2024/07/14 17:19:37 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2024/07/15 17:59:25 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-static void	do_conversion(unsigned int num, unsigned int original_n, int digits, char *str)
+static void	do_conversion(unsigned int num, unsigned int original_n, int digits,
+		char *str)
 {
 	while (original_n != 0)
 	{
@@ -27,18 +28,18 @@ static void	do_conversion(unsigned int num, unsigned int original_n, int digits,
 		digits--;
 	}
 }
+
 void	is_char(char a, int *len)
 {
 	*len += write(1, &a, 1);
 }
+
 void	is_pointer(size_t pointer, int *len)
 {
 	char	string[25];
 	char	*hexa;
 	size_t	i;
 
-	// char	*string;
-	// string = NULL;
 	hexa = "0123456789abcdef";
 	i = 0;
 	if (pointer == 0)
@@ -58,6 +59,7 @@ void	is_pointer(size_t pointer, int *len)
 		*len += write(1, &string[i], 1);
 	}
 }
+
 void	is_string(char *s, int *len)
 {
 	while (*s)
@@ -66,12 +68,12 @@ void	is_string(char *s, int *len)
 		s++;
 	}
 }
+
 void	is_int(int num, char *str, int *len)
 {
 	int	original_n;
 	int	digits;
 
-	original_n = num;
 	digits = 0;
 	if (num == 0)
 	{
@@ -87,12 +89,14 @@ void	is_int(int num, char *str, int *len)
 	{
 		digits++;
 		str[0] = '-';
-		num = num * (-1);
+		num = -num;
 	}
+	original_n = num;
 	do_conversion(num, original_n, digits, str);
 	is_string(str, len);
 }
-void 	is_uint(unsigned int n, char *str, int *len)
+
+void	is_uint(unsigned int n, char *str, int *len)
 {
 	unsigned int	original_n;
 	int				digits;
@@ -107,6 +111,7 @@ void 	is_uint(unsigned int n, char *str, int *len)
 	do_conversion(n, original_n, digits, str);
 	is_string(str, len);
 }
+
 void	is_shexa(unsigned int hexn, int *len)
 {
 	char	string[25];
@@ -114,8 +119,6 @@ void	is_shexa(unsigned int hexn, int *len)
 	size_t	i;
 
 	hexa = "0123456789abcdef";
-	
-	
 	i = 0;
 	if (hexn == 0)
 	{
@@ -133,6 +136,7 @@ void	is_shexa(unsigned int hexn, int *len)
 		*len += write(1, &string[i], 1);
 	}
 }
+
 void	is_bhexa(unsigned int hexn, int *len)
 {
 	char	string[25];
@@ -140,8 +144,6 @@ void	is_bhexa(unsigned int hexn, int *len)
 	size_t	i;
 
 	hexa = "0123456789ABCDEF";
-	
-	
 	i = 0;
 	if (hexn == 0)
 	{

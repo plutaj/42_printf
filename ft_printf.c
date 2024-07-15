@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.c                                           :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:03:29 by jpluta            #+#    #+#             */
-/*   Updated: 2024/07/14 17:58:47 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2024/07/15 18:00:38 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void	form_spec_check(const char *string, va_list args, int *len)
 {
-	// int		i;
 	char	str[15];
 
-	// i = 0;
 	if (*string == '%')
 		len += write(1, "%", 1);
 	else if (*string == 'c')
@@ -38,9 +36,9 @@ void	form_spec_check(const char *string, va_list args, int *len)
 
 int	ft_printf(const char *string, ...)
 {
-	int length;
-	size_t i;
-	va_list args;
+	int		length;
+	size_t	i;
+	va_list	args;
 
 	length = 0;
 	i = 0;
@@ -67,12 +65,12 @@ int	ft_printf(const char *string, ...)
 // int	main(void)
 // {
 // 	// char	*a;
-// 	unsigned int	age = 9999;
+// 	int	age = -9;
 
 // 	// a = "jozef";
 // 	// age = 4294967291;
-// 	int i = ft_printf("hex num of 9999 is %x\n", age);
-// 	i = ft_printf("hex num of 9999 is %X\n", age);
+// 	int i = ft_printf("num is %i\n", age);
+// 	// i = ft_printf("hex num of 9999 is %X\n", age);
 // 	printf("%d\n", i);
 // 	// i = ft_printf("tvoj vek je %d\n", 0);
 // 	// printf("%d\n", i);
@@ -81,7 +79,6 @@ int	ft_printf(const char *string, ...)
 // 	// i = ft_printf("tvoj vek je %d\n", 1298439850);
 // 	// printf("orig pointer je %p\n", a);
 // 	// printf("%d", i);
-	
 
 // 	return (0);
 // }

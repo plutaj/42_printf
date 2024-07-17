@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:03:29 by jpluta            #+#    #+#             */
-/*   Updated: 2024/07/15 18:00:38 by jpluta           ###   ########.fr       */
+/*   Updated: 2024/07/17 19:35:17 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,16 @@ int	ft_printf(const char *string, ...)
 	{
 		if (string[i] == '%')
 		{
+			// if (string[i + 1] == '%')
+			// {
+			// 	length += write(1, "%", 1);
+			// 	i++;
+			// }
+			// else
+			// {
+			// 	form_spec_check(&string[i], args, &length);
+			// 	i++;
+			// }
 			i++;
 			form_spec_check(&string[i], args, &length);
 			i++;
@@ -65,11 +75,11 @@ int	ft_printf(const char *string, ...)
 // int	main(void)
 // {
 // 	// char	*a;
-// 	int	age = -9;
+// 	// int	age = -9;
 
 // 	// a = "jozef";
 // 	// age = 4294967291;
-// 	int i = ft_printf("num is %i\n", age);
+// 	int i = ft_printf("num is %%\n");
 // 	// i = ft_printf("hex num of 9999 is %X\n", age);
 // 	printf("%d\n", i);
 // 	// i = ft_printf("tvoj vek je %d\n", 0);

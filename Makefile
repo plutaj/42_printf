@@ -2,6 +2,7 @@ NAME = libftprintf.a
 SOURCES = \
 		ft_printf.c \
 		functions.c \
+		functions2.c \
 
 OBJECTS = $(SOURCES:.c=.o)
 

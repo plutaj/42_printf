@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:03:29 by jpluta            #+#    #+#             */
-/*   Updated: 2024/07/17 19:35:17 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2024/07/28 14:51:35 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	form_spec_check(const char *string, va_list args, int *len)
 	char	str[15];
 
 	if (*string == '%')
-		len += write(1, "%", 1);
+		*len += write(1, "%", 1);
 	else if (*string == 'c')
 		is_char(va_arg(args, int), len);
 	else if (*string == 's')
@@ -47,16 +47,6 @@ int	ft_printf(const char *string, ...)
 	{
 		if (string[i] == '%')
 		{
-			// if (string[i + 1] == '%')
-			// {
-			// 	length += write(1, "%", 1);
-			// 	i++;
-			// }
-			// else
-			// {
-			// 	form_spec_check(&string[i], args, &length);
-			// 	i++;
-			// }
 			i++;
 			form_spec_check(&string[i], args, &length);
 			i++;
@@ -74,21 +64,19 @@ int	ft_printf(const char *string, ...)
 
 // int	main(void)
 // {
-// 	// char	*a;
-// 	// int	age = -9;
+// 	int	i;
 
-// 	// a = "jozef";
-// 	// age = 4294967291;
-// 	int i = ft_printf("num is %%\n");
-// 	// i = ft_printf("hex num of 9999 is %X\n", age);
-// 	printf("%d\n", i);
-// 	// i = ft_printf("tvoj vek je %d\n", 0);
+// 	i = 0;
+// // 	// i = ft_printf("%%%c%%%s%%%d%%%i%%%u%%%x%%
+// // %X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%%%%%c%%%s%%%d%%%i%%%u%%%x%%%X%
+// // %%% %c%%", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,
+// // -42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
+// // 	i = ft_printf(" %% ");
+// // 	ft_printf("%d", i);
+// 	// i = printf("ORIGINAL : NULL %s NULL\n", NULL);
 // 	// printf("%d\n", i);
-// 	// i = ft_printf("tvoj vek je %d\n", -2147483648);
-// 	// printf("%d\n", i);
-// 	// i = ft_printf("tvoj vek je %d\n", 1298439850);
-// 	// printf("orig pointer je %p\n", a);
-// 	// printf("%d", i);
+// 	i = ft_printf("FT : NULL %s NULL \n", NULL);
+// 	ft_printf("%d\n", i);
 
 // 	return (0);
 // }
